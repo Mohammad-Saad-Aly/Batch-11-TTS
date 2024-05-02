@@ -1,0 +1,231 @@
+<style type="text/css">
+    .green{
+      background-color: #009900;
+    }
+    .red{
+      background-color: #FF0000;
+    }
+    .blue{
+      background-color: #66CCFF;
+    }
+    .yellow{
+      background-color: #FFCC00;
+    }
+    .row{
+      display: flex;
+    }
+    .board{
+      width: fit-content;
+      border: 10px solid #11262e;
+      border-radius: 5px;
+      margin: 10px auto;
+    }
+    .white-box{
+      background-color: white;
+        width: 150px;
+        height: 150px;
+        margin: 20% auto;
+        border: 1px solid black;
+    }
+    .red-box{
+      background-color: #FF0000;
+        width: 250px;
+        height: 250px;
+        border: 1px solid black;
+    }
+    .green-box{
+        background-color: #009900;
+        width: 250px;
+        height: 250px;
+        border: 1px solid black;
+    }
+    .blue-box{
+      background-color: #66CCFF;
+        width: 250px;
+        height: 250px;
+        border:1px solid black;
+    }
+    .yellow-box{
+      background-color: #FFCC00;
+        width: 250px;
+        height: 250px;
+        border:1px solid #000;
+    }
+    .white-box .circle{
+      border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin: 16px;
+        border: 1px solid black;
+    }
+    .cell{
+        width: 40px;
+        height: 40px;
+        border: 1px solid #000;
+    }
+    .destination{
+      border-top: 63px solid #009900;
+        border-left: 63px solid #FF0000;
+        border-right: 63px solid #FFCC00;
+        border-bottom: 63px solid #66CCFF;
+    }
+  
+  </style>
+  <div class="board">
+    <div class="row">
+      <div class="red-box">
+        <div class="white-box">
+          <div class="red circle"></div>
+          <div class="red circle"></div>
+          <div class="red circle"></div>
+          <div class="red circle"></div>
+        </div>
+      </div>
+      <div class="cell-container">
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell green"></div>
+          <div class="cell green"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell green"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell green"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell green"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell green"></div>
+          <div class="cell"></div>
+        </div>
+      </div>
+      <div class="green-box">
+        <div class="white-box">
+          <div class="green circle"></div>
+          <div class="green circle"></div>
+          <div class="green circle"></div>
+          <div class="green circle"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell-container">
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell red"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell red"></div>
+          <div class="cell red"></div>
+          <div class="cell red"></div>
+          <div class="cell red"></div>
+          <div class="cell red"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+      </div>
+      <div class="destination"></div>
+      <div class="cell-container">
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell yellow"></div>
+          <div class="cell yellow"></div>
+          <div class="cell yellow"></div>
+          <div class="cell yellow"></div>
+          <div class="cell yellow"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell yellow"></div>
+          <div class="cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="blue-box">
+        <div class="white-box">
+          <div class="blue circle"></div>
+          <div class="blue circle"></div>
+          <div class="blue circle"></div>
+          <div class="blue circle"></div>
+        </div>
+      </div>
+      <div class="cell-container">
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell blue"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell blue"></div>
+          <div class="cell "></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell blue"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell blue"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell blue"></div>
+          <div class="cell blue"></div>
+          <div class="cell"></div>
+        </div>
+        <div class="row">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+      </div>
+      <div class="yellow-box">
+        <div class="white-box">
+          <div class="yellow circle"></div>
+          <div class="yellow circle"></div>
+          <div class="yellow circle"></div>
+          <div class="yellow circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
