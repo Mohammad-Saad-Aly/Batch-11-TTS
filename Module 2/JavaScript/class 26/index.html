@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .abc {
+        position: absolute;
+        top: 65%;
+        left: 0;
+        animation: linear infinite;
+        animation-name: run;
+        animation-duration: 5s;
+      }
+      @keyframes run {
+        0% {
+          left: 0;
+        }
+        50% {
+          left: calc(100% - 100px);
+        }
+        100% {
+          left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <input type="text" name="" id="username" /><br /><br>
+    <input type="email" name="" id="email" /><br /><br>
+    <input type="password" name="" id="password" /><br /><br> -->
+
+    <!-- <button id="btn">Send</button> -->
+
+    <!-- <div id="objects">
+
+    </div>
+    <br><br>
+
+    <button id="btn">Delete Object</button> -->
+
+    <input type="file" name="" id="vibes" />
+    <br /><br />
+
+    <button id="btn">send</button>
+    <br /><br />
+    <img src="" width="200px" id="img" alt="" />
+
+    <script src="app.js"></script>
+  </body>
+</html>
