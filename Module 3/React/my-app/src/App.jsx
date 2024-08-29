@@ -1,20 +1,26 @@
+import { useState } from "react";
 import "./App.css";
-import Cards from "./Components/Card/Cards";
 
 function App() {
+  let [num, setNum] = useState(0);
+
+  let incFun = () => {
+    setNum(num + 1);
+  };
 
   
-  
+  let decFun = () => {
+    setNum(num - 1);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-      <Cards title="Audi" imgSrc="https://media.ed.edmunds-media.com/audi/rs-7/2024/oem/2024_audi_rs-7_sedan_performance_fq_oem_1_1600.jpg"/>
-    <br /><br />
-      <Cards title="Audi" imgSrc="https://media.ed.edmunds-media.com/audi/rs-7/2024/oem/2024_audi_rs-7_sedan_performance_fq_oem_1_1600.jpg"/>
-<br /><br />
-      <Cards title="Audi" imgSrc="https://media.ed.edmunds-media.com/audi/rs-7/2024/oem/2024_audi_rs-7_sedan_performance_fq_oem_1_1600.jpg"/>
+        <h1>{num}</h1>
 
-
+        <button onClick={incFun}>Increment</button>
+        <br />
+        <button onClick={decFun}>Decrement</button>
       </header>
     </div>
   );
