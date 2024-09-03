@@ -1,82 +1,89 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  // let [bulb, setBulb] = useState(false)
+  let [amount, setAmount] = useState(0);
+  let [type, setType] = useState("income");
+  let [transaction, setTransactions] = useState([]);
 
-  // let onBulb = () =>{
-  //   setBulb(true)
-  // }
-  // let offBulb = () =>{
-  //   setBulb(false)
-  // }
-
-  // let onToggle = () => {
-  //   setBulb(!bulb)
-  // }
-
-  let [inputText, setInputText] = useState("");
-  let [list, setList] = useState(["apple", "banana"]);
-
-  let addItem = () => {
-    // list.push(inputText)
-    let copyList = [...list];
-    copyList.push(inputText);
-    setList(copyList);
+  let handleTransactions = () => {
+    console.log("amount=>", amount);
+    console.log("type=>", type);
+    setTransactions([...transaction, { amount, type }]);
+    setAmount(0);
   };
 
-  let handleInput = (e) => {
-    setInputText(e.target.value);
-  };
+  let totalIncome = transaction.reduce((acc, curr)=>{
+    return curr.type == 'income' ? acc + Number(curr.amount) : acc
+  }, 0)
 
-  let delItem = (index) => {
-    let copyList = [...list];
-    copyList.splice(index, 1)
-    setList(copyList);
-  };
+  let totalExpense = transaction.reduce((acc, curr)=>{
+    return curr.type == 'expense' ? acc + Number(curr.amount) : acc
+  }, 0)
 
-  return (
-    <>
-      <input onChange={handleInput} type="text" name="" id="" />
-      <button onClick={addItem}>Add Item</button>
+  let balance = totalIncome - totalExpense
 
-      <ul>
-        {list.map((data, index) => {
-          return (
-            <li key={index}>
-              {data} <button onClick={() => delItem(index)}>Delete</button>
-            </li>
-          );
-        })}
-      </ul>
+  let delExpense = (index)=>{
 
-      {/* {
-    bulb && <img
-    width="300"
-    src="https://img.freepik.com/free-vector/realistic-light-bulb-with-electricity_23-2149129409.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1724976000&semt=ais_hybrid"
-    alt=""
-  />
+    let copy = [...transaction]
+    copy.splice(index, 1)
+    setTransactions(copy)
+
   }
 
 
-      
-{
-  !bulb && <img
-  width="300"
-  src="https://w7.pngwing.com/pngs/859/425/png-transparent-light-bulb-illustration-incandescent-light-bulb-lamp-bulb-candle-product-light-thumbnail.png"
-  alt=""
-/>
-}
-      
+  return (
+    <>
+      <h1>Expense Management System</h1>
 
-      <br />
-      <br />
-      <button onClick={onBulb}>On</button>
-      <button onClick={offBulb}>Off</button>
-      <br />
-      <button onClick={onToggle} >On and Off</button> */}
+      <div>
+        <div style={{display:'flex', justifyContent:'space-around'}}>
+          <div>
+            <p>Total Income</p>
+            <p>{totalIncome}</p>
+          </div>
+          <div>
+            <p>Total Expense</p>
+            <p>{totalExpense}</p>
+          </div>
+          <div>
+            <p>Balance</p>
+            <p>{balance}</p>
+          </div>
+        </div>
+
+        <input
+          onChange={(e) => setAmount(e.target.value)}
+          value={amount}
+          type="text"
+          name=""
+          id=""
+        />
+        <select
+          onChange={(e) => setType(e.target.value)}
+          value={type}
+          name=""
+          id=""
+        >
+          <option value="income">income</option>
+          <option value="expense">expense</option>
+        </select>
+        <button onClick={handleTransactions}>Submit</button>
+
+        <div>
+          <ul>
+            {transaction.map((data, index) => {
+              return (
+                <li key={index}>
+                  {data.amount} {data.type}
+                  <button onClick={()=>delExpense(index)}>Delete</button>
+                  <button>Edit</button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
     </>
   );
 }
