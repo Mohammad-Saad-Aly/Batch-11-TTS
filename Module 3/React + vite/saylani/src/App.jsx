@@ -1,89 +1,79 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  let [amount, setAmount] = useState(0);
-  let [type, setType] = useState("income");
-  let [transaction, setTransactions] = useState([]);
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
+  const [selected, setSelected] = useState("");
 
-  let handleTransactions = () => {
-    console.log("amount=>", amount);
-    console.log("type=>", type);
-    setTransactions([...transaction, { amount, type }]);
-    setAmount(0);
-  };
+  useEffect(() => {
+    fetch("https://the-trivia-api.com/v2/questions")
+      .then((data) => data.json())
+      .then((response) => {
+        response.map((item) => {
+          item.options = [...item.incorrectAnswers, item.correctAnswer];
+          item.options = shuffle(item.options);
+        });
 
-  let totalIncome = transaction.reduce((acc, curr)=>{
-    return curr.type == 'income' ? acc + Number(curr.amount) : acc
-  }, 0)
+        setData(response);
 
-  let totalExpense = transaction.reduce((acc, curr)=>{
-    return curr.type == 'expense' ? acc + Number(curr.amount) : acc
-  }, 0)
+        console.log("response", response);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  let balance = totalIncome - totalExpense
+  function shuffle(array) {
+    let currentIndex = array.length;
 
-  let delExpense = (index)=>{
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
 
-    let copy = [...transaction]
-    copy.splice(index, 1)
-    setTransactions(copy)
-
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+    return array;
   }
 
+  if (!data.length) {
+    return <h1>loading ....</h1>;
+  }
 
   return (
     <>
-      <h1>Expense Management System</h1>
+      <p>{data[count].question.text}</p>
 
-      <div>
-        <div style={{display:'flex', justifyContent:'space-around'}}>
-          <div>
-            <p>Total Income</p>
-            <p>{totalIncome}</p>
-          </div>
-          <div>
-            <p>Total Expense</p>
-            <p>{totalExpense}</p>
-          </div>
-          <div>
-            <p>Balance</p>
-            <p>{balance}</p>
-          </div>
-        </div>
+      {
+        data[count].options.map((item, key) => {
+          return (
+            <div key={key}>
+              <input
+                onChange={() => setSelected(item)}
+                type="radio"
+                checked={selected == item}
+                name="question{key}"
+                value={item}
+              />{" "}
+              {item}
+            </div>
+          );
+        })
+        // console.log("data", data)
+      }
 
-        <input
-          onChange={(e) => setAmount(e.target.value)}
-          value={amount}
-          type="text"
-          name=""
-          id=""
-        />
-        <select
-          onChange={(e) => setType(e.target.value)}
-          value={type}
-          name=""
-          id=""
+      {count == data.length - 1 ? (
+        <button onClick={() => setCount(0)}>Restart</button>
+      ) : (
+        <button
+          onClick={() => {
+            setCount(count + 1);
+          }}
         >
-          <option value="income">income</option>
-          <option value="expense">expense</option>
-        </select>
-        <button onClick={handleTransactions}>Submit</button>
-
-        <div>
-          <ul>
-            {transaction.map((data, index) => {
-              return (
-                <li key={index}>
-                  {data.amount} {data.type}
-                  <button onClick={()=>delExpense(index)}>Delete</button>
-                  <button>Edit</button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
+          Next
+        </button>
+      )}
     </>
   );
 }
