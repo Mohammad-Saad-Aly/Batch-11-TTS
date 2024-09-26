@@ -1,26 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const Navbar = () => {
+export default function Navbar() {
   return (
-    <div>
-      <ul style={{display:'flex', listStyle:'none', width:'100%', justifyContent:'space-around'}}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="about">About</Link>
-        </li>
-        <li>
-          <Link to="contact">Contact</Link>
-        </li>
+    <div >
+
+    <ul style={{display:'flex', width:'100%', justifyContent:"space-around"}}>
+       <Link to='/'>Home</Link>
+       <Link to='/about'>About</Link>
+       <Link to='/contact'>Contact</Link>
+       <Link to='/products'>Products</Link>
+    </ul>
 
 
-        <li>
-          
-          <Link to='products'>Products</Link>
-        </li>
-      </ul>
     </div>
-  );
-};
+  )
+}

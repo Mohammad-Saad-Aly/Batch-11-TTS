@@ -1,10 +1,13 @@
-import RouterConfig from "./Config/RouterConfig/RouterConfig"
+import RouterConfig from './Config/RouterConfig'
+
 
 function App() {
 
   return (
     <>
-      <RouterConfig/>
+
+<RouterConfig/>
+
     </>
   )
 }

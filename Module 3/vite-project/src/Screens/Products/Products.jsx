@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import Cards from '../../Components/Card/Card'
+import Cards from '../../Components/Card/Cards'
 
-export const Products = () => {
+function Products() {
 
-  const [pro, setPro] = useState([])
+    const [product, setProduct] = useState([])
 
-  useEffect(()=>{
-    fetch('https://fakestoreapi.com/products')
-    .then((data)=>{
-      return data.json()
-    })
-    .then((data)=>{
-      setPro(data)
-      console.log(data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  },[])
-
+    useEffect(()=>{
+        fetch('https://fakestoreapi.com/products')
+        .then((data)=>{
+            return data.json()
+        })
+        .then((data)=>{
+            console.log(data)
+            setProduct(data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }, [])
 
   return (
     <div>
-      {
-        pro.map((item, index)=>{
-          return <div key={item.id}>
-            <Cards item={item}/>
-          </div>
-
-        })
-      }
+        {
+            product.map((item, index)=>{
+                return <div key={item.id}> <Cards item={item}/> </div>
+            })
+        }
     </div>
   )
 }
+
+export default Products
